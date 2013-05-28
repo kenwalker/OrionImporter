@@ -7,3 +7,5 @@ Once you add a button (or other method) to call importIntoOrion(), a zip of your
 immediately.
 
 See the index.html for an example
+
+You need to include the **handoff** directory and the code from **index.html** plus add your zip inside the **handoff/download** directory.
