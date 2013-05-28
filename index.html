@@ -37,7 +37,7 @@
 		function importIntoOrion(appName) {
 
 			// Where does the handoff code and "download" subfolder exist
-			var location = "https://orion.eclipse.org/file/E/OrionImporter/handoff";
+			var location = "http://kenwalker.github.io/OrionImporter/handoff";
 
 			// First check to see if the browser supports our import workflow
 			if (!isSupportedBrowser()) {
@@ -71,11 +71,11 @@
 		<p>This example shows you how to embed the code in your HTML document along with the <i>handoff</i> directory containing some
 		Orion boilerplate code to handle the import.</p>
 		<p>The important elements in this file are the <i>Script</i> code in the <b>head</b> and the name of the Zip file in
-		the </i>handoff/download</i> directory.  In this case, we are using <i>Sample.zip</i>.</p>
+		the <i>handoff/download</i> directory.  In this case, we are using <i>Sample.zip</i>.</p>
 		<p>The other file is <i>handoff/js/orion-connector-script.js</i> that contains the destination Orion server you want to import into
 		and the file you'd like to end up editing right away.  This is currently limited to a file in the root of the project.</p>
 		<p>
-<button type="button" onclick="importIntoOrion('Sample');">Import a Sample into Orion</button>			
+		<button type="button" onclick="importIntoOrion('Sample');">Import a Sample into Orion</button>			
 		</p>
       </section>
     </div>
