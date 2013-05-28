@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset=utf-8>
+		<title>Orion Import Example</title>
+<script>
+		/*global alert */
+		function isSupportedBrowser() {
+			var userAgent = navigator.userAgent;
+			var isSupported = false;
+			var VERSION = 1;
+			var browserData = [	{name:'Chrome', regExp: /chrome\/(\d+)/i, minVersion: 24},
+								{name:'Firefox', regExp: /firefox\/(\d+)/i, minVersion: 5},
+								{name:'MSIE', regExp: /msie\s(\d+)/i, minVersion: 10}];
+		
+			for (var i = 0; i < browserData.length; i++) {
+			    var browser = browserData[i];
+			    var matches = userAgent.match(browser.regExp);
+			    if (matches && matches[VERSION] >= browser.minVersion) {
+			        isSupported = true;
+			        break;
+			    }
+			}
+			return isSupported;
+		}
+	
+		/* @appName is the name of the Folder you want created in Orion and the name of the ZIP */
+		/**
+		 * Imports a zip into Orion.  There needs to be a download folder containing a zip of the same name
+		 * as the appName.   A folder will be created at Orion and the contents of the
+		 * zip expanded into that folder.  If the folder already exists, nothing will be done and the editor
+		 * will be opened at that location.
+		 *
+		 * @param {String} appName The name of the App to install into Orion.
+		 */
+		function importIntoOrion(appName) {
+
+			// Where does the handoff code and "download" subfolder exist
+			var location = "https://orion.eclipse.org/file/E/OrionImporter/handoff";
+
+			// First check to see if the browser supports our import workflow
+			if (!isSupportedBrowser()) {
+				alert("Sorry, your browser is not supported at the moment.\n\nTo use the Import function for Orion, we recommend that you use the latest web browsers from Google Chrome or Firefox.\n");
+				throw 'unsupported browser';
+			}
+
+			// If all is good, open up the handoff.html with the appropriate information.
+			window.open(location + "/	handoff.html" +  
+			       "?appName=" + appName + 
+				   "&url=" + encodeURI(location));
+		}
+</script>
+	</head>
+	<body>
+		<h3>Orion Import Sample Page</h3>
+		<p>This example shows you how to embed the code in your HTML document along with the <i>handoff</i> directory containing some
+		Orion boilerplate code to handle the import.</p>
+		<p>The important elements in this file are the <i>Script</i> code in the <b>head</b> and the name of the Zip file in
+		the </i>handoff/download</i> directory.  In this case, we are using <i>Sample.zip</i>.</p>
+		<p>The other file is <i>handoff/js/orion-connector-script.js</i> that contains the destination Orion server you want to import into
+		and the file you'd like to end up editing right away.  This is currently limited to a file in the root of the project.</p>
+		<p>
+<button type="button" onclick="importIntoOrion('Sample');">Import a Sample into Orion</button>			
+		</p>
+	</body>
+</html>
